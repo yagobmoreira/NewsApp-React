@@ -1,11 +1,11 @@
 import { HeaderContainer } from './styles';
-import trybeLogo from '../../../public/trybeLogo.svg';
+import trybeLogo from '../../assets/trybeLogo.svg';
 
 function Header() {
   return (
     <HeaderContainer>
       <img src={ trybeLogo } alt="Logotipo da Trybe" />
-      <h1>TrybeNews</h1>
+      <h1>Trybe News</h1>
     </HeaderContainer>
   );
 }
