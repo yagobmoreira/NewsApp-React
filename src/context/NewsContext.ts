@@ -1,8 +1,9 @@
 import { createContext } from 'react';
-import { News } from '../utils/types';
+import { News, Item } from '../utils/types';
 
 type NewsContextType = {
   news: News;
+  breakingNews: Item[];
 };
 
 const NewsContext = createContext({} as NewsContextType);

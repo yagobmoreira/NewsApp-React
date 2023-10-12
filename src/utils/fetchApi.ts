@@ -1,4 +1,6 @@
-const fetchApi = async (url: string) => {
+import { News } from './types';
+
+const fetchApi = async (url: string): Promise<News> => {
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -8,6 +10,7 @@ const fetchApi = async (url: string) => {
     return data;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
