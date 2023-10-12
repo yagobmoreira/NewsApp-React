@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
   align-items: center;
-  background-color: rgba(14, 14, 14, 0.85);
+  background-color: rgba(14, 14, 14, 1);
   box-shadow: 0rem 0.25rem 1.75rem rgba(0, 0, 0, 0.25);
   color: white;
   display: flex;
@@ -16,6 +16,7 @@ export const HeaderContainer = styled.header`
   position: fixed;
   text-transform: uppercase;
   width: 100%;
+  z-index: 1;
 
   img {
     position: absolute;

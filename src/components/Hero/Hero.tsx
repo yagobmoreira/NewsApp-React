@@ -9,7 +9,7 @@ function Hero() {
   const BASE_IMAGE_URL = 'https://agenciadenoticias.ibge.gov.br/';
   return (
     <SectionContainer>
-      <Carousel style={ { width: '70%' } }>
+      <Carousel style={ { width: '100%' } }>
         {breakingNews && (breakingNews.slice(0, 3).map((news) => (
           <Carousel.Item key={ news.id } interval={ 5000 }>
             <img src={ `${BASE_IMAGE_URL}${getImageURL(news)}` } alt="" />
