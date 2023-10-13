@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 
 export const SectionContainer = styled.section`
+  align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
   margin: 0 auto;
-  width: 80%;
+  width: 70%;
   
   h3 {
     font-family: 'Roboto', sans-serif;
     font-size: 1.6rem;
     font-weight: 900;
+    font-style: normal;
     color: rgba(12,12,13,1);
   }
 

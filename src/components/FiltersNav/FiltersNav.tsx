@@ -18,13 +18,13 @@ function FiltersNav() {
       activeKey={ key }
       onSelect={ (k: any) => setKey(k) }
       className="mb-3"
-      style={ { width: '80%',
+      style={ { width: '70%',
         margin: '0 auto' } }
     >
       <Tab
         eventKey="maisRecentes"
         title="Mais recentes"
-        style={ { width: '80%',
+        style={ { width: '70%',
           margin: '0 auto' } }
       >
         <Content />
@@ -32,7 +32,7 @@ function FiltersNav() {
       <Tab
         eventKey="Release"
         title="Releases"
-        style={ { width: '80%',
+        style={ { width: '70%',
           margin: '0 auto' } }
       >
         <Content />
@@ -40,7 +40,7 @@ function FiltersNav() {
       <Tab
         eventKey="Notícia"
         title="Notícias"
-        style={ { width: '80%',
+        style={ { width: '70%',
           margin: '0 auto' } }
       >
         <Content />
@@ -48,7 +48,7 @@ function FiltersNav() {
       <Tab
         eventKey="favoritos"
         title="Favoritos"
-        style={ { width: '80%',
+        style={ { width: '70%',
           margin: '0 auto' } }
       >
         favoritos
