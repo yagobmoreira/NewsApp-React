@@ -3,6 +3,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Content from '../Content/Content';
 import NewsContext from '../../context/NewsContext';
+import Favorites from '../Favorites/Favorites';
 
 function FiltersNav() {
   const [key, setKey] = useState<string>('maisRecentes');
@@ -49,9 +50,14 @@ function FiltersNav() {
         eventKey="favoritos"
         title="Favoritos"
         style={ { width: '70%',
-          margin: '0 auto' } }
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          margin: '0 auto',
+          minHeight: '18rem',
+        } }
       >
-        favoritos
+        <Favorites />
       </Tab>
     </Tabs>
   );
