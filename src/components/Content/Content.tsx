@@ -13,10 +13,7 @@ function Content() {
       {filteredNews && filteredNews.slice(3, 12).map((item) => (
         <NewsCard
           key={ item.id }
-          title={ item.titulo }
-          introduction={ item.introducao }
-          date={ item.data_publicacao }
-          link={ item.link }
+          item={ item }
         />
       ))}
     </ContentSection>

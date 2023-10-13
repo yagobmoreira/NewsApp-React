@@ -12,6 +12,11 @@ function NewsProvider({ children }: ProviderType) {
   const [news, setNews] = useState<News>({} as News);
   const [breakingNews, setBreakingNews] = useState<Item[]>([]);
   const [filter, setFilter] = useState<string>('');
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
+
+  const handleFavorite = () => {
+
+  };
 
   useEffect(() => {
     const fetchNews = async () => {

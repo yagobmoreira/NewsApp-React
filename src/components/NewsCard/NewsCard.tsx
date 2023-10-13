@@ -1,19 +1,38 @@
 import Card from 'react-bootstrap/Card';
+import { Heart } from '@phosphor-icons/react';
+import { useState } from 'react';
 import calcDate from '../../utils/calcDate';
+import { Item } from '../../utils/types';
 
 type NewsCardProps = {
-  title: string;
-  introduction: string;
-  date: string;
-  link: string;
+  item: Item;
+
 };
-function NewsCard({ title, introduction, date, link }: NewsCardProps) {
-  calcDate(date);
+function NewsCard({ item }: NewsCardProps) {
+  const { titulo, introducao, data_publicacao: dataPublicacao, link } = item;
+
+  const [isFavorite, setIsFavorite] = useState(
+    () => JSON.parse(localStorage.getItem('favoriteNews') || '[]')
+      .some((news: Item) => news.titulo === titulo),
+  );
+
+  const setAndRemoveFromLocalStorage = () => {
+    const favoriteNews = JSON.parse(localStorage.getItem('favoriteNews') || '[]');
+    if (isFavorite) {
+      const newFavoriteNews = favoriteNews.filter((news: Item) => news.titulo !== titulo);
+      localStorage.setItem('favoriteNews', JSON.stringify(newFavoriteNews));
+      setIsFavorite(false);
+    } else {
+      localStorage.setItem('favoriteNews', JSON.stringify([...favoriteNews, item]));
+      setIsFavorite(true);
+    }
+  };
+
   return (
     <Card
       style={ {
         boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
-        minHeight: '22rem',
+        minHeight: '18rem',
         position: 'relative',
         width: '20rem',
       } }
@@ -22,13 +41,13 @@ function NewsCard({ title, introduction, date, link }: NewsCardProps) {
         <Card.Title
           style={ {
             color: '#2a2b2c',
-            fontFamily: 'Roboto' || 'sans-serif',
-            fontSize: title.length > 80 ? '1.1rem' : '1.2rem',
+            fontFamily: 'Roboto',
+            fontSize: titulo.length > 80 ? '1.1rem' : '1.2rem',
             fontWeight: '700',
             textAlign: 'match-parent',
           } }
         >
-          {title}
+          {titulo}
         </Card.Title>
         <Card.Text
           style={ {
@@ -40,18 +59,68 @@ function NewsCard({ title, introduction, date, link }: NewsCardProps) {
             lineHeight: '1.2rem',
           } }
         >
-          {introduction}
+          {introducao}
         </Card.Text>
         <Card.Footer
           style={ {
+            alignItems: 'center',
             backgroundColor: 'white',
             bottom: '40px',
+            display: 'flex',
+            flexFlow: 'row nowrap',
+            padding: '10px',
+            justifyContent: 'center',
+            gap: '60px',
             position: 'absolute',
+            width: '90%',
           } }
         >
-          <small className="text-muted">{date}</small>
-          <a target="_blank" href={ link } rel="noreferrer">Leia a notícia aqui</a>
+          <small
+            className="text-muted"
+            style={ {
+              color: '#2a2b2c',
+              fontFamily: 'Roboto',
+              fontSize: '0.75rem',
+              fontWeight: '400',
+              textAlign: 'justify',
+              lineHeight: '1.2rem',
+            } }
+          >
+            {
+          calcDate(dataPublicacao) === 0
+            ? 'hoje'
+            : `${calcDate(dataPublicacao)} dias atrás`
+}
+          </small>
+          <a
+            target="_blank"
+            href={ link }
+            rel="noreferrer"
+            style={ {
+              backgroundColor: '#05d465',
+              borderRadius: '5px',
+              color: '#2a2b2c',
+              fontFamily: 'Roboto',
+              fontSize: '0.75rem',
+              boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+              padding: '5px 10px',
+              textDecoration: 'none',
+            } }
+          >
+            Leia a notícia aqui
+          </a>
         </Card.Footer>
+        <button
+          style={ { border: 'none',
+            background: 'none',
+            position: 'absolute',
+            bottom: '8px',
+            right: '20px',
+          } }
+          onClick={ () => setAndRemoveFromLocalStorage() }
+        >
+          <Heart color="#cb2048" weight={ isFavorite ? 'fill' : 'bold' } size={ 24 } />
+        </button>
       </Card.Body>
     </Card>
   );
