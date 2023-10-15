@@ -37,6 +37,8 @@ export const ContentFiltersContainer = styled.div`
 
   .active {
     border-bottom: 3px solid #c31815;
+    color: #c31815;
+    font-weight: 700;
   }
 `;
 

@@ -5,4 +5,5 @@ export const ContentSection = styled.section`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  margin-top: 2rem;
 `;

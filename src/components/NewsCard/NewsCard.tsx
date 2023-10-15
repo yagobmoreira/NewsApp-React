@@ -1,33 +1,19 @@
 import Card from 'react-bootstrap/Card';
 import { Heart } from '@phosphor-icons/react';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import calcDate from '../../utils/calcDate';
 import { Item } from '../../utils/types';
 import NewsContext from '../../context/NewsContext';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 type NewsCardProps = {
   item: Item;
-
+  renderFavorite?: (item: Item) => void | undefined;
 };
-function NewsCard({ item }: NewsCardProps) {
+function NewsCard({ item, renderFavorite = undefined }: NewsCardProps) {
   const { titulo, introducao, data_publicacao: dataPublicacao, link } = item;
   const { toggleOrientation } = useContext(NewsContext);
-  const [isFavorite, setIsFavorite] = useState(
-    () => JSON.parse(localStorage.getItem('favoriteNews') || '[]')
-      .some((news: Item) => news.titulo === titulo),
-  );
-
-  const setAndRemoveFromLocalStorage = () => {
-    const favoriteNews = JSON.parse(localStorage.getItem('favoriteNews') || '[]');
-    if (isFavorite) {
-      const newFavoriteNews = favoriteNews.filter((news: Item) => news.titulo !== titulo);
-      localStorage.setItem('favoriteNews', JSON.stringify(newFavoriteNews));
-      setIsFavorite(false);
-    } else {
-      localStorage.setItem('favoriteNews', JSON.stringify([...favoriteNews, item]));
-      setIsFavorite(true);
-    }
-  };
+  const { isFavorite, setAndRemoveFromLocalStorage } = useLocalStorage(item);
 
   return (
     <Card
@@ -122,7 +108,9 @@ function NewsCard({ item }: NewsCardProps) {
             style={ { border: 'none',
               background: 'none',
             } }
-            onClick={ () => setAndRemoveFromLocalStorage() }
+            onClick={ renderFavorite
+              ? () => renderFavorite(item)
+              : () => setAndRemoveFromLocalStorage() }
           >
             <Heart color="#05d465" weight={ isFavorite ? 'fill' : 'bold' } size={ 24 } />
           </button>

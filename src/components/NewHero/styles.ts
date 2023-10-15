@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const HeroContainer = styled.section`
   display: flex;
   flex-flow: row nowrap;
+  height: 485px;
   justify-content: space-between;
   margin: 8rem auto 2rem auto;
-  height: 485px;
   width: 80%;
 
 `;
@@ -29,6 +29,7 @@ export const MainHero = styled.a`
   }
 
   img {
+    border-radius: 0.5rem;
     height: 485px;
     width: 100%;
   }
@@ -41,6 +42,7 @@ export const SecondaryHero = styled.div`
   width: 43%;
   
   img {
+    border-radius: 0.5rem;
     cursor: pointer;
     height: 235px;
     width: 100%;
