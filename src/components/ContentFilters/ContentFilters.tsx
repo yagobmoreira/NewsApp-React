@@ -14,7 +14,7 @@ import {
 
 function ContentFilters() {
   const { content, handleContent, activeButton } = useContentFilters();
-  const { setQuantityNews } = useContext(NewsContext);
+  const { setQuantityNews, setToggleOrientation } = useContext(NewsContext);
   return (
     <SectionContainer>
       <Container
@@ -52,7 +52,10 @@ function ContentFilters() {
             Favoritos
           </button>
         </ContentFiltersContainer>
-        <button style={ { background: 'none', border: 'none', marginRight: '1rem' } }>
+        <button
+          onClick={ () => setToggleOrientation((prevToggle) => !prevToggle) }
+          style={ { background: 'none', border: 'none', marginRight: '1rem' } }
+        >
           <img src={ toggleOrientation } alt="" />
         </button>
       </Container>

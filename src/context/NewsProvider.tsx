@@ -13,6 +13,7 @@ function NewsProvider({ children }: ProviderType) {
   const [breakingNews, setBreakingNews] = useState<Item[]>([]);
   const [filter, setFilter] = useState<string>('');
   const [quantityNews, setQuantityNews] = useState<number>(12);
+  const [toggleOrientation, setToggleOrientation] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -32,6 +33,8 @@ function NewsProvider({ children }: ProviderType) {
     setFilter,
     quantityNews,
     setQuantityNews,
+    toggleOrientation,
+    setToggleOrientation,
   };
 
   return (

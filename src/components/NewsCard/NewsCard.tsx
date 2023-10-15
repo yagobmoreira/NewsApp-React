@@ -1,8 +1,9 @@
 import Card from 'react-bootstrap/Card';
 import { Heart } from '@phosphor-icons/react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import calcDate from '../../utils/calcDate';
 import { Item } from '../../utils/types';
+import NewsContext from '../../context/NewsContext';
 
 type NewsCardProps = {
   item: Item;
@@ -10,7 +11,7 @@ type NewsCardProps = {
 };
 function NewsCard({ item }: NewsCardProps) {
   const { titulo, introducao, data_publicacao: dataPublicacao, link } = item;
-
+  const { toggleOrientation } = useContext(NewsContext);
   const [isFavorite, setIsFavorite] = useState(
     () => JSON.parse(localStorage.getItem('favoriteNews') || '[]')
       .some((news: Item) => news.titulo === titulo),
@@ -33,19 +34,27 @@ function NewsCard({ item }: NewsCardProps) {
       style={ {
         boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
         margin: '1rem 0',
-        minHeight: '16rem',
+        height: toggleOrientation ? '18rem' : '14rem',
         position: 'relative',
-        width: '24rem',
+        width: toggleOrientation ? '24rem' : '80rem',
       } }
     >
-      <Card.Body className="cardBody">
+      <Card.Body
+        style={ {
+          display: 'flex',
+          flexFlow: 'column nowrap',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
+        } }
+        className="cardBody"
+      >
         <Card.Title
           style={ {
             color: '#2a2b2c',
             fontFamily: 'Gabarito',
-            fontSize: titulo.length > 80 ? '1.2rem' : '1.3rem',
+            fontSize: toggleOrientation ? '1.2rem' : '2rem',
             fontWeight: '700',
-            minHeight: '4.375rem',
+            minHeight: toggleOrientation ? '4.375rem' : '2rem',
             textAlign: 'left',
           } }
         >
@@ -55,10 +64,10 @@ function NewsCard({ item }: NewsCardProps) {
           style={ {
             color: '#2a2b2c',
             fontFamily: 'Gabarito' || 'sans-serif',
-            fontSize: '0.75rem',
+            fontSize: toggleOrientation ? '0.75rem' : '1rem',
             fontWeight: '400',
             lineHeight: '1.2rem',
-            minHeight: '6rem',
+            minHeight: toggleOrientation ? '6rem' : '3rem',
             textAlign: 'justify',
           } }
         >
