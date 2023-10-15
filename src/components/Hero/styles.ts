@@ -5,7 +5,7 @@ export const SectionContainer = styled.section`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 0 auto;
+  margin: 8rem auto 4rem;
   width: 70%;
   
   h3 {

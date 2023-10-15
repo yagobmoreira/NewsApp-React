@@ -8,4 +8,5 @@ export const FavoriteSection = styled.section`
   flex-basis: 0;
   justify-content: center;
   gap: 3rem;
+  margin: 0 auto;
 `;

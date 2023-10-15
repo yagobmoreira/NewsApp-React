@@ -5,17 +5,17 @@ import filterNews from '../../utils/filterNews';
 import { ContentSection } from './styles';
 
 function Content() {
-  const { news, filter } = useContext(NewsContext);
+  const { news, filter, quantityNews } = useContext(NewsContext);
   const filteredNews = filterNews(news, filter);
-
   return (
     <ContentSection>
-      {filteredNews && filteredNews.slice(3, 12).map((item) => (
-        <NewsCard
-          key={ item.id }
-          item={ item }
-        />
-      ))}
+      {filteredNews && filteredNews
+        .slice(3, quantityNews).map((item) => (
+          <NewsCard
+            key={ item.id }
+            item={ item }
+          />
+        ))}
     </ContentSection>
   );
 }

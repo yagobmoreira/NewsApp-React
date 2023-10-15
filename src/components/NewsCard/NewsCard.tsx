@@ -32,19 +32,21 @@ function NewsCard({ item }: NewsCardProps) {
     <Card
       style={ {
         boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
-        minHeight: '18rem',
+        margin: '1rem 0',
+        minHeight: '16rem',
         position: 'relative',
-        width: '20rem',
+        width: '24rem',
       } }
     >
       <Card.Body className="cardBody">
         <Card.Title
           style={ {
             color: '#2a2b2c',
-            fontFamily: 'Roboto',
-            fontSize: titulo.length > 80 ? '1.1rem' : '1.2rem',
+            fontFamily: 'Gabarito',
+            fontSize: titulo.length > 80 ? '1.2rem' : '1.3rem',
             fontWeight: '700',
-            textAlign: 'match-parent',
+            minHeight: '4.375rem',
+            textAlign: 'left',
           } }
         >
           {titulo}
@@ -52,11 +54,12 @@ function NewsCard({ item }: NewsCardProps) {
         <Card.Text
           style={ {
             color: '#2a2b2c',
-            fontFamily: 'Roboto' || 'sans-serif',
+            fontFamily: 'Gabarito' || 'sans-serif',
             fontSize: '0.75rem',
             fontWeight: '400',
-            textAlign: 'justify',
             lineHeight: '1.2rem',
+            minHeight: '6rem',
+            textAlign: 'justify',
           } }
         >
           {introducao}
@@ -65,21 +68,18 @@ function NewsCard({ item }: NewsCardProps) {
           style={ {
             alignItems: 'center',
             backgroundColor: 'white',
-            bottom: '40px',
             display: 'flex',
             flexFlow: 'row nowrap',
             padding: '10px',
-            justifyContent: 'center',
-            gap: '60px',
-            position: 'absolute',
-            width: '90%',
+            justifyContent: 'space-between',
+            width: '100%',
           } }
         >
           <small
             className="text-muted"
             style={ {
               color: '#2a2b2c',
-              fontFamily: 'Roboto',
+              fontFamily: 'Gabarito',
               fontSize: '0.75rem',
               fontWeight: '400',
               textAlign: 'justify',
@@ -100,7 +100,7 @@ function NewsCard({ item }: NewsCardProps) {
               backgroundColor: '#05d465',
               borderRadius: '5px',
               color: '#2a2b2c',
-              fontFamily: 'Roboto',
+              fontFamily: 'Gabarito',
               fontSize: '0.75rem',
               boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
               padding: '5px 10px',
@@ -109,18 +109,16 @@ function NewsCard({ item }: NewsCardProps) {
           >
             Leia a notícia aqui
           </a>
+          <button
+            style={ { border: 'none',
+              background: 'none',
+            } }
+            onClick={ () => setAndRemoveFromLocalStorage() }
+          >
+            <Heart color="#05d465" weight={ isFavorite ? 'fill' : 'bold' } size={ 24 } />
+          </button>
         </Card.Footer>
-        <button
-          style={ { border: 'none',
-            background: 'none',
-            position: 'absolute',
-            bottom: '8px',
-            right: '20px',
-          } }
-          onClick={ () => setAndRemoveFromLocalStorage() }
-        >
-          <Heart color="#cb2048" weight={ isFavorite ? 'fill' : 'bold' } size={ 24 } />
-        </button>
+
       </Card.Body>
     </Card>
   );
