@@ -5,6 +5,7 @@ import calcDate from '../../utils/calcDate';
 import { Item } from '../../utils/types';
 import NewsContext from '../../context/NewsContext';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import './newscard.css';
 
 type NewsCardProps = {
   item: Item;
@@ -17,6 +18,7 @@ function NewsCard({ item, renderFavorite = undefined }: NewsCardProps) {
 
   return (
     <Card
+      className="card"
       style={ {
         boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
         margin: '1rem 0',

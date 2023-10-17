@@ -6,4 +6,9 @@ export const ContentSection = styled.section`
   flex-flow: row wrap;
   justify-content: space-between;
   margin-top: 2rem;
+  width: 100%;
+
+  @media (max-width: 1000px) {
+    justify-content: space-evenly;
+  }
 `;
