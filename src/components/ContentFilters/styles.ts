@@ -36,8 +36,8 @@ export const ContentFiltersContainer = styled.div`
   }
 
   .active {
-    border-bottom: 3px solid #c31815;
-    color: #c31815;
+    border-bottom: 3px solid #cf813c;
+    color: #cf813c;
     font-weight: 700;
   }
 `;
@@ -49,8 +49,8 @@ export const ContentContainer = styled.div`
 export const Button = styled.button`
   background: none;
   border-radius: 2px;
-  border: 1px solid #c31815;
-  color: #c31815;
+  border: 2px solid #cf813c;
+  color: #cf813c;
   text-align: center;
   font-family: Gabarito;
   font-size: 18px;

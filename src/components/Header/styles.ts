@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
   align-items: center;
-  background-color: rgba(14, 14, 14, 1);
-  box-shadow: 0rem 0.25rem 1.75rem rgba(0, 0, 0, 0.25);
+  background-color: #cf813c;
+  box-shadow: 0rem 0.25rem 1rem #cf813c;
   color: white;
   display: flex;
   font-family: Gabarito;
@@ -18,13 +18,8 @@ export const HeaderContainer = styled.header`
   width: 100%;
   z-index: 1;
 
-  h1 {
-    margin: 0;
-  }
-
   img {
-    position: absolute;
-    height: 4rem;
-    left:0;
+    background-color: #cf813c;
+    height: 100%;
   }
 `;

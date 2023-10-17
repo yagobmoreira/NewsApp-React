@@ -23,6 +23,7 @@ function NewHero() {
             alt="Main news"
           />
           <h3>{breakingNews[0]?.titulo}</h3>
+          <span>{breakingNews[0]?.introducao}</span>
         </MainHero>
       )}
       <SecondaryHero>
@@ -37,6 +38,7 @@ function NewHero() {
             alt="Secondary news"
           />
           <h3>{breakingNews[1]?.titulo}</h3>
+          <span>{breakingNews[1]?.introducao}</span>
         </a>
         <a
           href={ breakingNews[2]?.link }
@@ -49,6 +51,7 @@ function NewHero() {
             alt="Secondary news"
           />
           <h3>{breakingNews[2]?.titulo}</h3>
+          <span>{breakingNews[2]?.introducao}</span>
         </a>
       </SecondaryHero>
     </HeroContainer>

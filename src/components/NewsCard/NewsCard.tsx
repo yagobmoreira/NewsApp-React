@@ -92,12 +92,13 @@ function NewsCard({ item, renderFavorite = undefined }: NewsCardProps) {
             href={ link }
             rel="noreferrer"
             style={ {
-              backgroundColor: '#05d465',
+              backgroundColor: '#C18147',
+              boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
               borderRadius: '5px',
-              color: '#2a2b2c',
+              color: '#fff',
               fontFamily: 'Gabarito',
               fontSize: '0.75rem',
-              boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+              fontWeight: '700',
               padding: '5px 10px',
               textDecoration: 'none',
             } }
@@ -112,7 +113,7 @@ function NewsCard({ item, renderFavorite = undefined }: NewsCardProps) {
               ? () => renderFavorite(item)
               : () => setAndRemoveFromLocalStorage() }
           >
-            <Heart color="#05d465" weight={ isFavorite ? 'fill' : 'bold' } size={ 24 } />
+            <Heart color="#cf813c" weight={ isFavorite ? 'fill' : 'bold' } size={ 24 } />
           </button>
         </Card.Footer>
 
