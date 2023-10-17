@@ -6,7 +6,7 @@ function Header() {
     window.scrollTo(0, 0);
   };
   return (
-    <HeaderContainer>
+    <HeaderContainer data-testid="header">
       <button onClick={ scrollPage }>
         <img src={ logoY2News } alt="Logotipo" />
       </button>
