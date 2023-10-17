@@ -13,7 +13,7 @@ export const HeroContainer = styled.section`
       flex-flow: column nowrap;
       gap: 1rem;
       height: auto;
-      margin: 6rem auto;
+      margin: 6rem auto 2rem auto;
       width: 100%;
     }
   }
@@ -22,6 +22,7 @@ export const HeroContainer = styled.section`
 
 export const MainHero = styled.a`
   cursor: pointer;
+  background-color: white;
   position: relative;
   width: 55%;
 
@@ -40,8 +41,8 @@ export const MainHero = styled.a`
     @media screen {
       @media (max-width: 1000px) {
         color: #000;
-        font-size: 3.5vmax;
-        line-height: 4vmax;
+        font-size: 3vmax;
+        line-height: 3vmax;
         padding: 0 1rem;
         text-shadow: none;
         position: static;
@@ -129,8 +130,8 @@ export const SecondaryHero = styled.div`
       @media screen {
         @media (max-width: 1000px) {
           color: #000;
-          font-size: 3.5vmax;
-          line-height: 4vmax;
+          font-size: 3vmax;
+          line-height: 3vmax;;
           padding: 0 1rem;
           text-shadow: none;
           position: static;
@@ -170,6 +171,7 @@ export const SecondaryHero = styled.div`
 
   @media screen {
     @media (max-width: 1000px) {
+      background-color: white;
       flex-flow: column nowrap;
       gap: 1rem;
       height: auto;

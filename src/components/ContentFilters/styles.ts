@@ -7,6 +7,12 @@ export const SectionContainer = styled.section`
   justify-content: center;
   margin: 0 auto;
   width: 80%;
+
+  @media screen {
+    @media (max-width: 1000px) {
+      width: 90%;
+    }
+  }
 `;
 
 export const Container = styled.div`
@@ -18,6 +24,18 @@ export const Container = styled.div`
   height: 4rem;
   justify-content: space-between;
   width: 100%;
+
+  .toggleOrientationBtn {
+    background: none;
+    border: none;
+    margin-right: 1rem;
+
+    @media screen {
+      @media (max-width: 1000px) {
+        display: none;
+      }
+    }
+  }
 `;
 
 export const ContentFiltersContainer = styled.div`
@@ -32,7 +50,13 @@ export const ContentFiltersContainer = styled.div`
     color: #2a2a2a;
     cursor: pointer;
     font-family: 'Gabarito';
-    font-size: 1.125rem; 
+    font-size: 1.125rem;
+
+    @media screen {
+      @media (max-width: 1000px) {
+        font-size: 1rem;
+      }
+    }
   }
 
   .active {

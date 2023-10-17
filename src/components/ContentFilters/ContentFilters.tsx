@@ -17,11 +17,7 @@ function ContentFilters() {
   const { setQuantityNews, setToggleOrientation } = useContext(NewsContext);
   return (
     <SectionContainer>
-      <Container
-        style={ {
-
-        } }
-      >
+      <Container>
         <ContentFiltersContainer>
           <button
             className={ activeButton === 'maisRecentes' ? 'active' : '' }
@@ -53,20 +49,21 @@ function ContentFilters() {
           </button>
         </ContentFiltersContainer>
         <button
+          className="toggleOrientationBtn"
           onClick={ () => setToggleOrientation((prevToggle) => !prevToggle) }
-          style={ { background: 'none', border: 'none', marginRight: '1rem' } }
         >
           <img src={ toggleOrientation } alt="" />
         </button>
       </Container>
-      <ContentContainer>{content ? <Content /> : <Favorites />}</ContentContainer>
+      <ContentContainer>
+        {content ? <Content /> : <Favorites />}
+      </ContentContainer>
       {activeButton !== 'favoritos'
       && (
         <Button onClick={ () => setQuantityNews((prevQuant) => prevQuant + 6) }>
           Mais notíciais
         </Button>
       )}
-
     </SectionContainer>
   );
 }

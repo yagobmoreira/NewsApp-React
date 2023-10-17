@@ -18,7 +18,13 @@ export const HeaderContainer = styled.header`
   width: 100%;
   z-index: 1;
 
-  img {
+  button {
+    background-color: #cf813c;
+    border: none;
+    height: 100%;
+  }
+
+  button > img {
     background-color: #cf813c;
     height: 100%;
   }
