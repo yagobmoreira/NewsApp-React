@@ -1,14 +1,15 @@
 import { screen, render } from '@testing-library/react';
 import { vi } from 'vitest';
-import { mockNews, mockBreakingNews } from './mocks/mockData';
-import * as APIModule from '../utils/fetchApi';
 import NewsProvider, { BASE_URL } from '../context/NewsProvider';
-import App from '../App';
-import { News } from '../utils/types';
 import NewsContext from '../context/NewsContext';
+import * as APIModule from '../utils/fetchApi';
+import { News } from '../utils/types';
 import getImageURL from '../utils/getImageURL';
+import { mockNews, mockBreakingNews } from './mocks/mockData';
+import App from '../App';
 
 const BASE_URL_ERROR = 'https://servicodados.ibge.gov.br/api/v3/nocias/?qtd=100';
+
 beforeEach(() => {
   vi.spyOn(APIModule, 'fetchApi').mockResolvedValue(mockNews as News);
 });
@@ -85,5 +86,9 @@ describe('Testes da aplicação', () => {
     expect(secondaryImages.length).toBe(2);
     expect(secondaryImages[0]).toHaveAttribute('src', `https://agenciadenoticias.ibge.gov.br/${getImageURL(mockBreakingNews[1])}`);
     expect(secondaryImages[1]).toHaveAttribute('src', `https://agenciadenoticias.ibge.gov.br/${getImageURL(mockBreakingNews[2])}`);
+  });
+
+  test('Testar se os cards de notícias são renderizados', async () => {
+
   });
 });
