@@ -11,6 +11,7 @@ export const SectionContainer = styled.section`
   @media screen {
     @media (max-width: 1000px) {
       width: 90%;
+      height: auto;
     }
   }
 `;

@@ -1,5 +1,4 @@
 import { Dispatch, Item, News } from '../../utils/types';
-import { BASE_URL } from '../../context/NewsProvider';
 import { fetchApi } from '../../utils/fetchApi';
 
 export const REQUEST_NEWS_API_START = 'REQUEST_NEWS_API_START';
@@ -11,6 +10,7 @@ export const REQUEST_QUANTITY_NEWS = 'REQUEST_QUANTITY_NEWS';
 export const REQUEST_TOGGLE_ORIENTATION = 'REQUEST_TOGGLE_ORIENTATION';
 export const REQUEST_ACTIVE_BUTTON = 'REQUEST_ACTIVE_BUTTON';
 export const REQUEST_CONTENT = 'REQUEST_CONTENT';
+export const BASE_URL = 'https://servicodados.ibge.gov.br/api/v3/noticias/?qtd=100';
 
 export const requestNewsApiStart = () => ({
   type: REQUEST_NEWS_API_START,

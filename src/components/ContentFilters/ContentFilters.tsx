@@ -17,7 +17,7 @@ function ContentFilters() {
   const globalState = useSelector((state: GlobalStateType) => state.news);
   const dispatch: Dispatch = useDispatch();
   const { content, activeButton, quantity, toggleOrientationType } = globalState;
-  console.log(quantity);
+
   const { handleContent } = useContentFilters();
   return (
     <SectionContainer>
