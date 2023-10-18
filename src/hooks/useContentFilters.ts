@@ -1,25 +1,28 @@
-import { useContext, useState } from 'react';
-import NewsContext from '../context/NewsContext';
+import { useDispatch } from 'react-redux';
+import { Dispatch } from '../utils/types';
+import { requestFilter,
+  requestContent,
+  requestActiveButton,
+  requestQuantityNews,
+} from '../redux/actions';
 
 const useContentFilters = () => {
-  const [content, setContent] = useState<boolean>(true);
-  const [activeButton, setActiveButton] = useState('maisRecentes');
-  const { setFilter, setQuantityNews } = useContext(NewsContext);
+  const dispatch = useDispatch<Dispatch>();
 
   const handleContent = (e: React.MouseEvent<HTMLButtonElement>) => {
     const { value } = e.target as HTMLButtonElement;
-    setActiveButton(value);
-    setQuantityNews(12);
+    dispatch(requestActiveButton(value));
+    dispatch(requestQuantityNews(12));
     if (value === 'favoritos') {
-      setFilter(value);
-      setContent(false);
+      dispatch(requestFilter(value));
+      dispatch(requestContent(false));
     } else {
-      setFilter(value);
-      setContent(true);
+      dispatch(requestFilter(value));
+      dispatch(requestContent(true));
     }
   };
 
-  return { content, handleContent, activeButton };
+  return { handleContent };
 };
 
 export default useContentFilters;

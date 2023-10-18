@@ -1,6 +1,6 @@
-import { useContext } from 'react';
-import NewsContext from '../../context/NewsContext';
+import { useSelector } from 'react-redux';
 import getImageURL from '../../utils/getImageURL';
+import { GlobalStateType } from '../../utils/types';
 import {
   HeroContainer,
   MainHero,
@@ -8,7 +8,8 @@ import {
 } from './styles';
 
 function NewHero() {
-  const { breakingNews } = useContext(NewsContext);
+  const globalState = useSelector((state: GlobalStateType) => state.news);
+  const { breakingNews } = globalState;
   const BASE_IMAGE_URL = 'https://agenciadenoticias.ibge.gov.br/';
 
   return (

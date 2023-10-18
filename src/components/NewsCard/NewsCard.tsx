@@ -11,6 +11,7 @@ type NewsCardProps = {
   item: Item;
   renderFavorite?: (item: Item) => void | undefined;
 };
+
 function NewsCard({ item, renderFavorite = undefined }: NewsCardProps) {
   const { titulo, introducao, data_publicacao: dataPublicacao, link } = item;
   const { toggleOrientation } = useContext(NewsContext);

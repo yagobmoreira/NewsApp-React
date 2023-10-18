@@ -1,3 +1,6 @@
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+
 export type Item = {
   id: number;
   tipo: string;
@@ -23,3 +26,20 @@ export type News = {
   showingTo: number;
   items: Item[];
 };
+
+export type NewsType = {
+  status: string;
+  news: News;
+  breakingNews: Item[];
+  filter: string;
+  quantity: number;
+  toggleOrientationType: boolean;
+  activeButton: string;
+  content: boolean;
+};
+
+export type GlobalStateType = {
+  news: NewsType;
+};
+
+export type Dispatch = ThunkDispatch<GlobalStateType, unknown, AnyAction>;

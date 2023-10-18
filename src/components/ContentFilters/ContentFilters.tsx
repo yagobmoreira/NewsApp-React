@@ -1,8 +1,9 @@
-import { useContext } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Favorites from '../Favorites/Favorites';
 import Content from '../Content/Content';
 import useContentFilters from '../../hooks/useContentFilters';
-import NewsContext from '../../context/NewsContext';
+import { Dispatch, GlobalStateType } from '../../utils/types';
+import { requestQuantityNews, requestToggleOrientation } from '../../redux/actions';
 import toggleOrientation from '../../assets/toggleOrientation.svg';
 import {
   SectionContainer,
@@ -13,8 +14,11 @@ import {
 } from './styles';
 
 function ContentFilters() {
-  const { content, handleContent, activeButton } = useContentFilters();
-  const { setQuantityNews, setToggleOrientation } = useContext(NewsContext);
+  const globalState = useSelector((state: GlobalStateType) => state.news);
+  const dispatch: Dispatch = useDispatch();
+  const { content, activeButton, quantity, toggleOrientationType } = globalState;
+  console.log(quantity);
+  const { handleContent } = useContentFilters();
   return (
     <SectionContainer>
       <Container>
@@ -50,7 +54,7 @@ function ContentFilters() {
         </ContentFiltersContainer>
         <button
           className="toggleOrientationBtn"
-          onClick={ () => setToggleOrientation((prevToggle) => !prevToggle) }
+          onClick={ () => dispatch(requestToggleOrientation(!toggleOrientationType)) }
         >
           <img src={ toggleOrientation } alt="" />
         </button>
@@ -60,7 +64,9 @@ function ContentFilters() {
       </ContentContainer>
       {activeButton !== 'favoritos'
       && (
-        <Button onClick={ () => setQuantityNews((prevQuant) => prevQuant + 6) }>
+        <Button
+          onClick={ () => dispatch(requestQuantityNews(quantity + 6)) }
+        >
           Mais notícias
         </Button>
       )}

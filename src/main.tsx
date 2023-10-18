@@ -1,10 +1,11 @@
 import ReactDOM from 'react-dom/client';
-import NewsProvider from './context/NewsProvider.tsx';
+import { Provider } from 'react-redux';
 import App from './App.tsx';
+import store from './redux';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <NewsProvider>
+  <Provider store={ store }>
     <App />
-  </NewsProvider>,
+  </Provider>,
 );
