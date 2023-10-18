@@ -5,7 +5,7 @@ const date = {
   2: '11/10/2023 09:00:00',
 };
 
-export const news = {
+export const mockNews = {
   count: 5454,
   page: 1,
   totalPages: 55,
@@ -17,7 +17,7 @@ export const news = {
     {
       id: 38126,
       tipo: 'Notícia',
-      titulo: 'Serviços recuam 0,9% em agosto, após três altas consecutivas ',
+      titulo: 'Serviços recuam 0,9% em agosto, após três altas consecutivas',
       introducao: 'Gestão de portos e terminais exerceu a principal influência negativa sobre o resultado do setor de serviços no país. Foto: Licia Rubinstein/Agência IBGE Notícias Em agosto, o volume de serviços prestados no país recuou 0,9% frente ao mês anterior, após...',
       data_publicacao: '17/10/2023 09:00:00',
       produto_id: 9229,
@@ -184,3 +184,9 @@ export const news = {
     },
   ],
 };
+
+export const mockBreakingNews = [
+  mockNews.items[0],
+  mockNews.items[2],
+  mockNews.items[3],
+];

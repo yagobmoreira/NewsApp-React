@@ -18,10 +18,12 @@ function NewsProvider({ children }: ProviderType) {
   useEffect(() => {
     const fetchNews = async () => {
       const data = await fetchApi(BASE_URL);
-      const brkNews = data.items
-        ?.filter((item) => item.destaque === true && item.tipo === 'Notícia');
+      if (data) {
+        const brkNews = data.items
+          ?.filter((item) => item.destaque === true && item.tipo === 'Notícia');
+        setBreakingNews(brkNews);
+      }
       setNews(data);
-      setBreakingNews(brkNews);
     };
     fetchNews();
   }, []);

@@ -12,9 +12,10 @@ function NewHero() {
   const BASE_IMAGE_URL = 'https://agenciadenoticias.ibge.gov.br/';
 
   return (
-    <HeroContainer>
+    <HeroContainer data-testid="heroContainer">
       {breakingNews && (
         <MainHero
+          data-testid="mainHero"
           href={ breakingNews[0]?.link }
           target="_blank"
         >
@@ -27,7 +28,7 @@ function NewHero() {
         </MainHero>
       )}
       {breakingNews && (
-        <SecondaryHero>
+        <SecondaryHero data-testid="secondaryHero">
           <a
             href={ breakingNews[1]?.link }
             target="_blank"
