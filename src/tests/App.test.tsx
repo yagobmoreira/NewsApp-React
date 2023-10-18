@@ -1,5 +1,7 @@
 import { screen, render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
+import { act } from 'react-dom/test-utils';
 import NewsProvider, { BASE_URL } from '../context/NewsProvider';
 import NewsContext from '../context/NewsContext';
 import * as APIModule from '../utils/fetchApi';
@@ -17,6 +19,8 @@ beforeEach(() => {
 afterEach(() => {
   vi.clearAllMocks();
 });
+
+const user = userEvent.setup();
 
 describe('Testes da aplicação', () => {
   test('Verificar o Header', () => {
@@ -89,6 +93,29 @@ describe('Testes da aplicação', () => {
   });
 
   test('Testar se os cards de notícias são renderizados', async () => {
-
+    const { debug } = render(
+      <NewsContext.Provider
+        value={ {
+          news: mockNews,
+          breakingNews: [],
+          filter: '',
+          setFilter: () => {},
+          quantityNews: 12,
+          setQuantityNews: () => {},
+          toggleOrientation: true,
+          setToggleOrientation: () => {},
+        } }
+      >
+        <App />
+      </NewsContext.Provider>,
+    );
+    const newsCard = screen.getAllByTestId('news-card');
+    const moreNewsButton = screen.getByRole('button', { name: /mais notícias/i });
+    expect(moreNewsButton).toBeInTheDocument();
+    expect(newsCard.length).toBe(9);
+    // console.log(moreNewsButton);
+    // await act(async () => user.click(moreNewsButton));
+    // newsCard = screen.getAllByTestId('news-card');
+    // expect(newsCard.length).toBe(15);
   });
 });

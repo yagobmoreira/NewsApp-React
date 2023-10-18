@@ -61,7 +61,7 @@ function ContentFilters() {
       {activeButton !== 'favoritos'
       && (
         <Button onClick={ () => setQuantityNews((prevQuant) => prevQuant + 6) }>
-          Mais notíciais
+          Mais notícias
         </Button>
       )}
     </SectionContainer>

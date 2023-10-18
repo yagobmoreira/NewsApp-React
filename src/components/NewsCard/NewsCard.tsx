@@ -18,6 +18,7 @@ function NewsCard({ item, renderFavorite = undefined }: NewsCardProps) {
 
   return (
     <Card
+      data-testid="news-card"
       className="card"
       style={ {
         boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
