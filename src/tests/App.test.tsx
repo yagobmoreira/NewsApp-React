@@ -1,16 +1,26 @@
-import { screen, render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
-import { act } from 'react-dom/test-utils';
-import NewsProvider, { BASE_URL } from '../context/NewsProvider';
-import NewsContext from '../context/NewsContext';
+import { renderWithRedux } from './helpers/renderWith';
 import * as APIModule from '../utils/fetchApi';
 import { News } from '../utils/types';
 import getImageURL from '../utils/getImageURL';
-import { mockNews, mockBreakingNews } from './mocks/mockData';
+import { mockNews, mockBreakingNews } from './helpers/mockData';
+import { BASE_IMAGE_URL } from '../components/NewHero/NewHero';
 import App from '../App';
 
-const BASE_URL_ERROR = 'https://servicodados.ibge.gov.br/api/v3/nocias/?qtd=100';
+const MOCK_INITIAL_STATE = {
+  news: {
+    status: 'Requisição concluída',
+    news: mockNews,
+    breakingNews: mockBreakingNews,
+    filter: '',
+    quantity: 12,
+    toggleOrientationType: true,
+    activeButton: 'maisRecentes',
+    content: true,
+  },
+};
 
 beforeEach(() => {
   vi.spyOn(APIModule, 'fetchApi').mockResolvedValue(mockNews as News);
@@ -23,99 +33,62 @@ afterEach(() => {
 const user = userEvent.setup();
 
 describe('Testes da aplicação', () => {
-  test('Verificar o Header', () => {
-    render(<App />);
+  test('Verificar o Header', async () => {
+    renderWithRedux(<App />);
     const header = screen.getByTestId('header');
+    const logoBtn = screen.getByAltText('Logotipo');
     expect(header).toBeInTheDocument();
+    expect(logoBtn).toBeInTheDocument();
   });
 
-  test('Verificar o fetch', async () => {
-    render(
-      <NewsProvider>
-        <App />
-      </NewsProvider>,
-    );
-    expect(APIModule.fetchApi).toHaveBeenCalledTimes(1);
-    expect(APIModule.fetchApi).toHaveBeenCalledWith(BASE_URL);
+  test('Testar o Hero', () => {
+    renderWithRedux(<App />, { initialState: MOCK_INITIAL_STATE });
+    const mainHero = screen.getByAltText('Main news');
+    const secondaryHero = screen.getAllByAltText('Secondary news');
+    expect(mainHero).toHaveAttribute('src', `${BASE_IMAGE_URL}${getImageURL(mockBreakingNews[0])}`);
+    expect(secondaryHero[0]).toHaveAttribute('src', `${BASE_IMAGE_URL}${getImageURL(mockBreakingNews[1])}`);
+    expect(secondaryHero[1]).toHaveAttribute('src', `${BASE_IMAGE_URL}${getImageURL(mockBreakingNews[2])}`);
   });
 
-  test('Verificar se retorna um erro caso a requisição seja feita com uma URL errada', async () => {
-    const MOCK_RESPONSE_ERROR = {
-      ok: false,
-      status: 404,
-      json: async () => mockNews,
-    } as Response;
-
-    vi.spyOn(APIModule, 'fetchApi').mockResolvedValue(MOCK_RESPONSE_ERROR as unknown as News);
-    await APIModule.fetchApi(BASE_URL_ERROR);
-
-    render(
-      <NewsProvider>
-        <App />
-      </NewsProvider>,
-    );
-    expect(APIModule.fetchApi).toHaveBeenCalled();
-    expect(APIModule.fetchApi).toHaveBeenCalledWith(BASE_URL_ERROR);
-  });
-
-  test('Testar os elementos do Hero', async () => {
-    render(
-      <NewsContext.Provider
-        value={ {
-          news: {} as News,
-          breakingNews: mockBreakingNews,
-          filter: '',
-          setFilter: () => {},
-          quantityNews: 12,
-          setQuantityNews: () => {},
-          toggleOrientation: true,
-          setToggleOrientation: () => {},
-        } }
-      >
-        <App />
-      </NewsContext.Provider>,
-    );
-    const heroContainer = screen.getByTestId('heroContainer');
-    const mainHeroTitle = screen.getByRole('heading', { name: mockBreakingNews[0].titulo });
-    const mainHeroImage = screen.getByAltText('Main news');
-    const secondaryTitle1 = screen.getByRole('heading', { name: mockBreakingNews[1].titulo });
-    const secondaryTitle2 = screen.getByRole('heading', { name: mockBreakingNews[2].titulo });
-    const secondaryImages = screen.getAllByAltText('Secondary news');
-
-    expect(heroContainer).toBeInTheDocument();
-    expect(mainHeroTitle).toBeInTheDocument();
-    expect(mainHeroImage).toHaveAttribute('src', `https://agenciadenoticias.ibge.gov.br/${getImageURL(mockBreakingNews[0])}`);
-    expect(secondaryTitle1).toBeInTheDocument();
-    expect(secondaryTitle2).toBeInTheDocument();
-    expect(secondaryImages.length).toBe(2);
-    expect(secondaryImages[0]).toHaveAttribute('src', `https://agenciadenoticias.ibge.gov.br/${getImageURL(mockBreakingNews[1])}`);
-    expect(secondaryImages[1]).toHaveAttribute('src', `https://agenciadenoticias.ibge.gov.br/${getImageURL(mockBreakingNews[2])}`);
-  });
-
-  test('Testar se os cards de notícias são renderizados', async () => {
-    const { debug } = render(
-      <NewsContext.Provider
-        value={ {
-          news: mockNews,
-          breakingNews: [],
-          filter: '',
-          setFilter: () => {},
-          quantityNews: 12,
-          setQuantityNews: () => {},
-          toggleOrientation: true,
-          setToggleOrientation: () => {},
-        } }
-      >
-        <App />
-      </NewsContext.Provider>,
-    );
-    const newsCard = screen.getAllByTestId('news-card');
-    const moreNewsButton = screen.getByRole('button', { name: /mais notícias/i });
+  test('Testar a renderização do Content', async () => {
+    const { store } = renderWithRedux(<App />, { initialState: MOCK_INITIAL_STATE });
+    const cards = screen.getAllByTestId('news-card');
+    const moreNewsButton = screen.getByRole('button', { name: 'Mais notícias' });
+    expect(cards.length).toBe(store.getState().news.quantity - 3); // 3 cards são renderizados no Hero
     expect(moreNewsButton).toBeInTheDocument();
-    expect(newsCard.length).toBe(9);
-    // console.log(moreNewsButton);
-    // await act(async () => user.click(moreNewsButton));
-    // newsCard = screen.getAllByTestId('news-card');
-    // expect(newsCard.length).toBe(15);
+
+    await user.click(moreNewsButton);
+    expect(store.getState().news.quantity).toBe(MOCK_INITIAL_STATE.news.quantity + 6); // 6 cards a mais são renderizados ao clicar no botão
+    await user.click(moreNewsButton);
+    expect(store.getState().news.quantity).toBe(24); // 12 cards a mais são renderizados ao clicar no botão
+  });
+
+  test('Testar a renderização do Content com filtro', async () => {
+    const { store } = renderWithRedux(<App />, { initialState: MOCK_INITIAL_STATE });
+    expect(store.getState().news.activeButton).toBe('maisRecentes');
+    const filterButton = screen.getByRole('button', { name: 'Notícias' });
+    expect(filterButton).toBeInTheDocument();
+    await user.click(filterButton);
+    const news = screen.getAllByTestId('news-card');
+    const filteredNews = mockNews.items.filter((item) => item.tipo === 'Notícia');
+    expect(news[0]).toHaveTextContent(filteredNews[3].titulo); // Começo a renderizar a partir do 4º item de filteredItems
+    expect(store.getState().news.activeButton).toBe('Notícia');
+    const filterFavoriteButton = screen.getByRole('button', { name: 'Favoritos' });
+    const moreNewsButton = screen.getByRole('button', { name: 'Mais notícias' });
+    await user.click(filterFavoriteButton);
+    expect(moreNewsButton).not.toBeInTheDocument();
+  });
+
+  test('Teste da função de favoritar notícias', async () => {
+    renderWithRedux(<App />, { initialState: MOCK_INITIAL_STATE });
+    const favoriteButton = screen.getAllByTestId('favorite-btn');
+    const filterFavoriteButton = screen.getByRole('button', { name: 'Favoritos' });
+    await user.click(favoriteButton[0]);
+    await user.click(favoriteButton[2]);
+    await user.click(filterFavoriteButton);
+    const news = screen.getAllByTestId('news-card');
+    expect(news.length).toBe(2);
+    const toggleBtn = screen.getByAltText('toggleOrientation');
+    await user.click(toggleBtn);
   });
 });

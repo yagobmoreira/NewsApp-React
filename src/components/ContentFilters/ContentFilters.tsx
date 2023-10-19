@@ -56,7 +56,7 @@ function ContentFilters() {
           className="toggleOrientationBtn"
           onClick={ () => dispatch(requestToggleOrientation(!toggleOrientationType)) }
         >
-          <img src={ toggleOrientation } alt="" />
+          <img src={ toggleOrientation } alt="toggleOrientation" />
         </button>
       </Container>
       <ContentContainer>

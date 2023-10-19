@@ -9,9 +9,11 @@ import './newscard.css';
 type NewsCardProps = {
   item: Item;
   renderFavorite?: (item: Item) => void | undefined;
+  filter?: string | undefined;
 };
 
-function NewsCard({ item, renderFavorite = undefined }: NewsCardProps) {
+function NewsCard({ item,
+  renderFavorite = undefined, filter = undefined }: NewsCardProps) {
   const { titulo, introducao, data_publicacao: dataPublicacao, link } = item;
   const globalState = useSelector((state: GlobalStateType) => state.news);
   const { toggleOrientationType: toggleOrientation } = globalState;
@@ -20,7 +22,7 @@ function NewsCard({ item, renderFavorite = undefined }: NewsCardProps) {
   return (
     <Card
       data-testid="news-card"
-      className="card"
+      className={ `card ${filter}` }
       style={ {
         boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
         margin: '1rem 0',
@@ -116,6 +118,7 @@ function NewsCard({ item, renderFavorite = undefined }: NewsCardProps) {
             onClick={ renderFavorite
               ? () => renderFavorite(item)
               : () => setAndRemoveFromLocalStorage() }
+            data-testid="favorite-btn"
           >
             <Heart color="#cf813c" weight={ isFavorite ? 'fill' : 'bold' } size={ 24 } />
           </button>

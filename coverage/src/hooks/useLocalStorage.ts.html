@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20.68% </span>
+                <span class="strong">89.65% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/29</span>
+                <span class='fraction'>26/29</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">85.71% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>6/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20.68% </span>
+                <span class="strong">89.65% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/29</span>
+                <span class='fraction'>26/29</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -96,58 +96,58 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">145x</span>
+<span class="cline-any cline-yes">145x</span>
+<span class="cline-any cline-yes">145x</span>
+<span class="cline-any cline-yes">47x</span>
+<span class="cline-any cline-yes">145x</span>
+<span class="cline-any cline-yes">145x</span>
+<span class="cline-any cline-yes">145x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">145x</span>
+<span class="cline-any cline-yes">145x</span>
+<span class="cline-any cline-yes">145x</span>
+<span class="cline-any cline-yes">145x</span>
+<span class="cline-any cline-yes">145x</span>
+<span class="cline-any cline-yes">145x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useState } from 'react';
 import { Item } from '../utils/types';
 &nbsp;
-const useLocalStorage = <span class="fstat-no" title="function not covered" >(item: Item) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const { titulo } = item;</span>
-<span class="cstat-no" title="statement not covered" >  const [isFavorite, setIsFavorite] = useState(</span>
-<span class="cstat-no" title="statement not covered" >    () =&gt; JSON.parse(localStorage.getItem('favoriteNews') || '[]')</span>
-<span class="cstat-no" title="statement not covered" >      .some((news: Item) =&gt; news.titulo === titulo),</span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const setAndRemoveFromLocalStorage = () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    const favoriteNews = JSON.parse(localStorage.getItem('favoriteNews') || '[]');</span>
-<span class="cstat-no" title="statement not covered" >    if (isFavorite) {</span>
+const useLocalStorage = (item: Item) =&gt; {
+  const { titulo } = item;
+  const [isFavorite, setIsFavorite] = useState(
+    () =&gt; JSON.parse(localStorage.getItem('favoriteNews') || '[]')
+      .some((news: Item) =&gt; news.titulo === titulo),
+  );
+&nbsp;
+  const setAndRemoveFromLocalStorage = () =&gt; {
+    const favoriteNews = JSON.parse(localStorage.getItem('favoriteNews') || '[]');
+    if (isFavorite) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >      const newFavoriteNews = favoriteNews.filter((news: Item) =&gt; news.titulo !== titulo);</span>
 <span class="cstat-no" title="statement not covered" >      localStorage.setItem('favoriteNews', JSON.stringify(newFavoriteNews));</span>
 <span class="cstat-no" title="statement not covered" >      setIsFavorite(false);</span>
-<span class="cstat-no" title="statement not covered" >    } else {</span>
-<span class="cstat-no" title="statement not covered" >      localStorage.setItem('favoriteNews', JSON.stringify([...favoriteNews, item]));</span>
-<span class="cstat-no" title="statement not covered" >      setIsFavorite(true);</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  return {</span>
-<span class="cstat-no" title="statement not covered" >    isFavorite,</span>
-<span class="cstat-no" title="statement not covered" >    setAndRemoveFromLocalStorage,</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+    } else {
+      localStorage.setItem('favoriteNews', JSON.stringify([...favoriteNews, item]));
+      setIsFavorite(true);
+    }
+  };
+&nbsp;
+  return {
+    isFavorite,
+    setAndRemoveFromLocalStorage,
+  };
+};
 &nbsp;
 export default useLocalStorage;
 &nbsp;</pre></td></tr></table></pre>
@@ -157,7 +157,7 @@ export default useLocalStorage;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-10-18T12:56:21.090Z
+                at 2023-10-19T00:08:17.280Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15.38% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/13</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15.38% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/13</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -77,30 +77,30 @@
 <a name='L12'></a><a href='#L12'>12</a>
 <a name='L13'></a><a href='#L13'>13</a>
 <a name='L14'></a><a href='#L14'>14</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">290x</span>
+<span class="cline-any cline-yes">290x</span>
+<span class="cline-any cline-yes">290x</span>
+<span class="cline-any cline-yes">290x</span>
+<span class="cline-any cline-yes">290x</span>
+<span class="cline-any cline-yes">290x</span>
+<span class="cline-any cline-yes">290x</span>
+<span class="cline-any cline-yes">290x</span>
+<span class="cline-any cline-yes">290x</span>
+<span class="cline-any cline-yes">290x</span>
+<span class="cline-any cline-yes">290x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const calcDate = <span class="fstat-no" title="function not covered" >(dateAndHour: string) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const date = dateAndHour.split(' ')[0];</span>
-<span class="cstat-no" title="statement not covered" >  const hour = dateAndHour.split(' ')[1];</span>
-<span class="cstat-no" title="statement not covered" >  const dateFormat = date.split('/').reverse().join('-');</span>
-<span class="cstat-no" title="statement not covered" >  const newsDate = new Date(`${dateFormat}T${hour}-03:00`);</span>
-<span class="cstat-no" title="statement not covered" >  const dateNow = new Date();</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const diffTime = Math.abs(dateNow.getTime() - newsDate.getTime());</span>
-<span class="cstat-no" title="statement not covered" >  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  return diffDays;</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const calcDate = (dateAndHour: string) =&gt; {
+  const date = dateAndHour.split(' ')[0];
+  const hour = dateAndHour.split(' ')[1];
+  const dateFormat = date.split('/').reverse().join('-');
+  const newsDate = new Date(`${dateFormat}T${hour}-03:00`);
+  const dateNow = new Date();
+&nbsp;
+  const diffTime = Math.abs(dateNow.getTime() - newsDate.getTime());
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+&nbsp;
+  return diffDays;
+};
 export default calcDate;
 &nbsp;</pre></td></tr></table></pre>
 
@@ -109,7 +109,7 @@ export default calcDate;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-10-18T12:56:21.090Z
+                at 2023-10-19T00:08:17.280Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -7,10 +7,11 @@ import {
   SecondaryHero,
 } from './styles';
 
+export const BASE_IMAGE_URL = 'https://agenciadenoticias.ibge.gov.br/';
+
 function NewHero() {
   const globalState = useSelector((state: GlobalStateType) => state.news);
   const { breakingNews } = globalState;
-  const BASE_IMAGE_URL = 'https://agenciadenoticias.ibge.gov.br/';
 
   return (
     <HeroContainer data-testid="heroContainer">

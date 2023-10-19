@@ -16,6 +16,7 @@ function Content() {
           <NewsCard
             key={ item.id }
             item={ item }
+            filter={ filter }
           />
         ))}
     </ContentSection>
