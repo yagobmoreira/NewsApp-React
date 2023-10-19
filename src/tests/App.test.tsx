@@ -4,7 +4,7 @@ import { vi } from 'vitest';
 import { renderWithRedux } from './helpers/renderWith';
 import * as APIModule from '../utils/fetchApi';
 import { News } from '../utils/types';
-import getImageURL from '../utils/getImageURL';
+import { getImageURL } from '../utils';
 import { mockNews, mockBreakingNews } from './helpers/mockData';
 import { BASE_IMAGE_URL } from '../components/NewHero/NewHero';
 import App from '../App';

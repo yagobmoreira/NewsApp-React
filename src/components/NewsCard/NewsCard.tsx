@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import Card from 'react-bootstrap/Card';
 import { Heart } from '@phosphor-icons/react';
-import useLocalStorage from '../../hooks/useLocalStorage';
-import calcDate from '../../utils/calcDate';
+import useStoredFavorites from '../../hooks/useStoredFavorites';
+import { calcDate } from '../../utils';
 import { GlobalStateType, Item } from '../../utils/types';
 import './newscard.css';
 
@@ -17,7 +17,7 @@ function NewsCard({ item,
   const { titulo, introducao, data_publicacao: dataPublicacao, link } = item;
   const globalState = useSelector((state: GlobalStateType) => state.news);
   const { toggleOrientationType: toggleOrientation } = globalState;
-  const { isFavorite, setAndRemoveFromLocalStorage } = useLocalStorage(item);
+  const { isFavorite, setAndRemoveFromLocalStorage } = useStoredFavorites(item);
 
   return (
     <Card
@@ -123,7 +123,6 @@ function NewsCard({ item,
             <Heart color="#cf813c" weight={ isFavorite ? 'fill' : 'bold' } size={ 24 } />
           </button>
         </Card.Footer>
-
       </Card.Body>
     </Card>
   );

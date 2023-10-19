@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import NewsCard from '../NewsCard/NewsCard';
-import filterNews from '../../utils/filterNews';
+import { filterNews } from '../../utils';
 import { ContentSection } from './styles';
 import { GlobalStateType } from '../../utils/types';
 

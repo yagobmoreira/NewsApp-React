@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Item } from '../utils/types';
 
-const useLocalStorage = (item: Item) => {
+const useStoredFavorites = (item: Item) => {
   const { titulo } = item;
   const [isFavorite, setIsFavorite] = useState(
     () => JSON.parse(localStorage.getItem('favoriteNews') || '[]')
@@ -26,4 +26,4 @@ const useLocalStorage = (item: Item) => {
   };
 };
 
-export default useLocalStorage;
+export default useStoredFavorites;

@@ -1,9 +1,10 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Favorites from '../Favorites/Favorites';
 import Content from '../Content/Content';
 import useContentFilters from '../../hooks/useContentFilters';
-import { Dispatch, GlobalStateType } from '../../utils/types';
+import { Dispatch } from '../../utils/types';
 import { requestQuantityNews, requestToggleOrientation } from '../../redux/actions';
+import useSelectFromStore from '../../hooks/useSelectFromStore';
 import toggleOrientation from '../../assets/toggleOrientation.svg';
 import {
   SectionContainer,
@@ -14,9 +15,12 @@ import {
 } from './styles';
 
 function ContentFilters() {
-  const globalState = useSelector((state: GlobalStateType) => state.news);
+  const { selectState } = useSelectFromStore();
   const dispatch: Dispatch = useDispatch();
-  const { content, activeButton, quantity, toggleOrientationType } = globalState;
+  const content = selectState('content') as boolean;
+  const activeButton = selectState('activeButton') as string;
+  const quantity = selectState('quantity') as number;
+  const toggleOrientationType = selectState('toggleOrientationType') as boolean;
 
   const { handleContent } = useContentFilters();
   return (
