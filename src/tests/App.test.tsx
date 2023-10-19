@@ -35,16 +35,16 @@ const user = userEvent.setup();
 describe('Testes da aplicação', () => {
   test('Verificar o Header', async () => {
     renderWithRedux(<App />);
-    const header = screen.getByTestId('header');
-    const logoBtn = screen.getByAltText('Logotipo');
+    const header = screen.getByRole('banner');
+    const logoBtn = screen.getByRole('button', { name: 'Logotipo' });
     expect(header).toBeInTheDocument();
     expect(logoBtn).toBeInTheDocument();
   });
 
   test('Testar o Hero', () => {
     renderWithRedux(<App />, { initialState: MOCK_INITIAL_STATE });
-    const mainHero = screen.getByAltText('Main news');
-    const secondaryHero = screen.getAllByAltText('Secondary news');
+    const mainHero = screen.getByRole('img', { name: 'Main news' });
+    const secondaryHero = screen.getAllByRole('img', { name: 'Secondary news' });
     expect(mainHero).toHaveAttribute('src', `${BASE_IMAGE_URL}${getImageURL(mockBreakingNews[0])}`);
     expect(secondaryHero[0]).toHaveAttribute('src', `${BASE_IMAGE_URL}${getImageURL(mockBreakingNews[1])}`);
     expect(secondaryHero[1]).toHaveAttribute('src', `${BASE_IMAGE_URL}${getImageURL(mockBreakingNews[2])}`);
@@ -88,7 +88,7 @@ describe('Testes da aplicação', () => {
     await user.click(filterFavoriteButton);
     const news = screen.getAllByTestId('news-card');
     expect(news.length).toBe(2);
-    const toggleBtn = screen.getByAltText('toggleOrientation');
+    const toggleBtn = screen.getByRole('button', { name: 'toggleOrientation' });
     await user.click(toggleBtn);
   });
 });
