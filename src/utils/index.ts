@@ -28,3 +28,7 @@ export const filterNews = (news: News, filter: string) => {
   }
   return news?.items;
 };
+
+export const scrollPage = () => {
+  window.scrollTo(0, 0);
+};

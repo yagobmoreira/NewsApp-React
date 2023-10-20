@@ -1,9 +1,7 @@
 import { HeaderContainer } from './styles';
+import { scrollPage } from '../../utils';
 
 function Header() {
-  const scrollPage = () => {
-    window.scrollTo(0, 0);
-  };
   return (
     <HeaderContainer>
       <button onClick={ scrollPage }>
