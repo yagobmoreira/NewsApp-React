@@ -33,12 +33,20 @@ afterEach(() => {
 const user = userEvent.setup();
 
 describe('Testes da aplicação', () => {
-  test('Verificar o Header', async () => {
+  test('Verificar o Header', () => {
     renderWithRedux(<App />);
     const header = screen.getByRole('banner');
     const logoBtn = screen.getByRole('heading', { name: 'IBGE News' });
     expect(header).toBeInTheDocument();
     expect(logoBtn).toBeInTheDocument();
+  });
+
+  test('Verificar o Footer', () => {
+    renderWithRedux(<App />);
+    const footer = screen.getByRole('contentinfo');
+    const footerBtn = screen.getByRole('button', { name: 'últimas notícias' });
+    expect(footer).toBeInTheDocument();
+    expect(footerBtn).toBeInTheDocument();
   });
 
   test('Testar o Hero', () => {
