@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import NewsCard from '../NewsCard/NewsCard';
 import { Item } from '../../utils/types';
+import { getImageURL } from '../../utils';
 import { FavoriteSection } from './styles';
+import { BASE_IMAGE_URL } from '../NewHero/NewHero';
 
 function Favorites() {
   const favoriteNews = JSON.parse(localStorage.getItem('favoriteNews') || '[]');
@@ -23,6 +25,7 @@ function Favorites() {
             key={ item.id }
             item={ item }
             renderFavorite={ removeFromFavorites }
+            imgSrc={ `${BASE_IMAGE_URL}${getImageURL(item)}` }
           />
         )))}
     </FavoriteSection>

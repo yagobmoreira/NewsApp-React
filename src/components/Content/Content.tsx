@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux';
 import NewsCard from '../NewsCard/NewsCard';
-import { filterNews } from '../../utils';
+import { filterNews, getImageURL } from '../../utils';
 import { ContentSection } from './styles';
 import { GlobalStateType } from '../../utils/types';
+import { BASE_IMAGE_URL } from '../NewHero/NewHero';
 
 function Content() {
   const globalState = useSelector((state: GlobalStateType) => state.news);
@@ -17,6 +18,7 @@ function Content() {
             key={ item.id }
             item={ item }
             filter={ filter }
+            imgSrc={ `${BASE_IMAGE_URL}${getImageURL(item)}` }
           />
         ))}
     </ContentSection>
