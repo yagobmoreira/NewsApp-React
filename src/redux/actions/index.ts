@@ -5,9 +5,10 @@ export const REQUEST_NEWS_API_START = 'REQUEST_NEWS_API_START';
 export const REQUEST_NEWS_API_SUCCESS = 'REQUEST_NEWS_API_SUCCESS';
 export const REQUEST_NEWS_API_ERROR = 'REQUEST_NEWS_API_ERROR';
 export const REQUEST_BREAKING_NEWS = 'REQUEST_BREAKING_NEWS';
+export const CHANGE_FILTER = 'CHANGE_FILTER';
 export const REQUEST_FILTER = 'REQUEST_FILTER';
-export const REQUEST_QUANTITY_NEWS = 'REQUEST_QUANTITY_NEWS';
-export const REQUEST_TOGGLE_ORIENTATION = 'REQUEST_TOGGLE_ORIENTATION';
+export const SET_QUANTITY_NEWS = 'SET_QUANTITY_NEWS';
+export const SET_TOGGLE_ORIENTATION = 'SET_TOGGLE_ORIENTATION';
 export const REQUEST_ACTIVE_BUTTON = 'REQUEST_ACTIVE_BUTTON';
 export const REQUEST_CONTENT = 'REQUEST_CONTENT';
 export const BASE_URL = 'https://servicodados.ibge.gov.br/api/v3/noticias/?qtd=100';
@@ -30,28 +31,18 @@ export const requestBreakingNews = (payload: Item[]) => ({
   payload,
 });
 
-export const requestFilter = (payload: string) => ({
-  type: REQUEST_FILTER,
+export const changeFilter = (payload: React.MouseEvent<HTMLButtonElement>) => ({
+  type: CHANGE_FILTER,
+  payload: payload.target,
+});
+
+export const setQuantityNews = (payload: number) => ({
+  type: SET_QUANTITY_NEWS,
   payload,
 });
 
-export const requestQuantityNews = (payload: number) => ({
-  type: REQUEST_QUANTITY_NEWS,
-  payload,
-});
-
-export const requestToggleOrientation = (payload: boolean) => ({
-  type: REQUEST_TOGGLE_ORIENTATION,
-  payload,
-});
-
-export const requestActiveButton = (payload: string) => ({
-  type: REQUEST_ACTIVE_BUTTON,
-  payload,
-});
-
-export const requestContent = (payload: boolean) => ({
-  type: REQUEST_CONTENT,
+export const setToggleOrientation = (payload: boolean) => ({
+  type: SET_TOGGLE_ORIENTATION,
   payload,
 });
 

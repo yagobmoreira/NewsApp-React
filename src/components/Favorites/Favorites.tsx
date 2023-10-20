@@ -16,7 +16,7 @@ function Favorites() {
   };
 
   return (
-    <FavoriteSection favoritesLength={ favoriteNews.length }>
+    <FavoriteSection favoritesLength={ favoriteNews?.length }>
       {favoriteNews.length === 0
         ? (<h1>Sem notícias favoritas !</h1>) : (favoriteNews.map((item: Item) => (
           <NewsCard
