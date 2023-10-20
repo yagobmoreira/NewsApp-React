@@ -137,6 +137,21 @@ function NewsCard({ item,
             <Heart color="#cf813c" weight={ isFavorite ? 'fill' : 'bold' } size={ 24 } />
           </button>
         </Card.Footer>
+        <span
+          style={
+          {
+            backgroundColor: item.tipo === 'Notícia' ? '#870511' : '#2f6640',
+            border: '1px solid #C18147',
+            borderRadius: '10px',
+            color: '#fff',
+            fontFamily: 'Gabarito',
+            fontSize: '0.8rem',
+            padding: '2px 5px',
+          }
+}
+        >
+          {item.tipo}
+        </span>
       </Card.Body>
     </Card>
   );
