@@ -36,7 +36,7 @@ describe('Testes da aplicação', () => {
   test('Verificar o Header', async () => {
     renderWithRedux(<App />);
     const header = screen.getByRole('banner');
-    const logoBtn = screen.getByRole('button', { name: 'Logotipo' });
+    const logoBtn = screen.getByRole('heading', { name: 'IBGE News' });
     expect(header).toBeInTheDocument();
     expect(logoBtn).toBeInTheDocument();
   });

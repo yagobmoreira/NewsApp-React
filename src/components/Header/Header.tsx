@@ -1,5 +1,4 @@
 import { HeaderContainer } from './styles';
-import logoY2News from '../../assets/logoY2News.svg';
 
 function Header() {
   const scrollPage = () => {
@@ -8,7 +7,7 @@ function Header() {
   return (
     <HeaderContainer>
       <button onClick={ scrollPage }>
-        <img src={ logoY2News } alt="Logotipo" />
+        <h1>IBGE News</h1>
       </button>
     </HeaderContainer>
   );
