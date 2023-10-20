@@ -7,7 +7,7 @@ function Footer() {
   return (
     <FooterContainer>
       <button onClick={ scrollPage }>
-        últimas notícias
+        Últimas notícias
       </button>
       <FooterContent>
         <span>Desenvolvido por Yago Moreira.</span>
