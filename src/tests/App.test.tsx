@@ -74,21 +74,28 @@ describe('Testes da aplicação', () => {
   test('Testar a renderização do Content com filtro', async () => {
     const { store } = renderWithRedux(<App />, { initialState: MOCK_INITIAL_STATE });
     expect(store.getState().news.activeButton).toBe('maisRecentes');
-    const filterButton = screen.getByRole('button', { name: 'Notícias' });
-    expect(filterButton).toBeInTheDocument();
-    await user.click(filterButton);
+    const newsButton = screen.getByRole('button', { name: 'Notícias' });
+    const releasesButton = screen.getByRole('button', { name: 'Releases' });
+    const filterFavoriteButton = screen.getByRole('button', { name: 'Favoritos' });
+    const moreNewsButton = screen.getByRole('button', { name: 'Mais notícias' });
+    expect(newsButton).toBeInTheDocument();
+    expect(releasesButton).toBeInTheDocument();
+    await user.click(newsButton);
     const news = screen.getAllByTestId('news-card');
     const filteredNews = mockNews.items.filter((item) => item.tipo === 'Notícia');
     expect(news[0]).toHaveTextContent(filteredNews[3].titulo); // Começo a renderizar a partir do 4º item de filteredItems
     expect(store.getState().news.activeButton).toBe('Notícia');
-    const filterFavoriteButton = screen.getByRole('button', { name: 'Favoritos' });
-    const moreNewsButton = screen.getByRole('button', { name: 'Mais notícias' });
     await user.click(filterFavoriteButton);
     expect(moreNewsButton).not.toBeInTheDocument();
+    await user.click(releasesButton);
+    const releases = screen.getAllByTestId('news-card');
+    const filteredReleases = mockNews.items.filter((item) => item.tipo === 'Release');
+    expect(releases[0]).toHaveTextContent(filteredReleases[3].titulo);
   });
 
   test('Teste da função de favoritar notícias', async () => {
     renderWithRedux(<App />, { initialState: MOCK_INITIAL_STATE });
+    window.localStorage.clear();
     const favoriteButton = screen.getAllByTestId('favorite-btn');
     const filterFavoriteButton = screen.getByRole('button', { name: 'Favoritos' });
     await user.click(favoriteButton[0]);
@@ -96,6 +103,10 @@ describe('Testes da aplicação', () => {
     await user.click(filterFavoriteButton);
     const news = screen.getAllByTestId('news-card');
     expect(news.length).toBe(2);
+    expect(window.localStorage.getItem('favoriteNews')).toEqual(JSON.stringify([mockNews.items[3], mockNews.items[5]]));
+    const fvButton = screen.getAllByTestId('favorite-btn');
+    await user.click(fvButton[0]); // removeFromFavorites
+    expect(window.localStorage.getItem('favoriteNews')).toEqual(JSON.stringify([mockNews.items[5]]));
     const toggleBtn = screen.getByRole('button', { name: 'toggleOrientation' });
     await user.click(toggleBtn);
   });

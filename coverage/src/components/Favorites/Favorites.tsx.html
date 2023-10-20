@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.37% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>27/32</span>
+                <span class='fraction'>32/32</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.37% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>27/32</span>
+                <span class='fraction'>32/32</span>
             </div>
         
             
@@ -100,31 +100,31 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useState } from 'react';
@@ -137,15 +137,15 @@ function Favorites() {
   const [favoriteItems, setFavoriteItems] = useState(favoriteNews);
 &nbsp;
   // Função para remover um item favorito
-  const removeFromFavorites = <span class="fstat-no" title="function not covered" >(itemToRemove: Item) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    const newFavoriteItems = favoriteItems</span>
-<span class="cstat-no" title="statement not covered" >      .filter((item: Item) =&gt; item.id !== itemToRemove.id);</span>
-<span class="cstat-no" title="statement not covered" >    localStorage.setItem('favoriteNews', JSON.stringify(newFavoriteItems));</span>
-<span class="cstat-no" title="statement not covered" >    setFavoriteItems(newFavoriteItems);</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
+  const removeFromFavorites = (itemToRemove: Item) =&gt; {
+    const newFavoriteItems = favoriteItems
+      .filter((item: Item) =&gt; item.id !== itemToRemove.id);
+    localStorage.setItem('favoriteNews', JSON.stringify(newFavoriteItems));
+    setFavoriteItems(newFavoriteItems);
+  };
 &nbsp;
   return (
-    &lt;FavoriteSection favoritesLength={ favoriteNews.length }&gt;
+    &lt;FavoriteSection favoritesLength={ favoriteNews?.length }&gt;
       {favoriteNews.length === 0
         ? (&lt;h1&gt;Sem notícias favoritas !&lt;/h1&gt;) : (favoriteNews.map((item: Item) =&gt; (
           &lt;NewsCard
@@ -166,7 +166,7 @@ export default Favorites;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-10-19T00:08:17.280Z
+                at 2023-10-20T11:34:01.754Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
