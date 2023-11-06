@@ -29,10 +29,10 @@ export const MainHero = styled.a`
   h3 {
     color: #fff;
     cursor: pointer;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-family: Gabarito;
     font-weight: 900;
-    line-height: 3rem;
+    line-height: 2rem;
     padding: 0 2rem;
     position: absolute;
     text-shadow: 1px 1px 6px #000;
@@ -118,7 +118,7 @@ export const SecondaryHero = styled.div`
     h3 {
       color: #fff;
       cursor: pointer;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-family: Gabarito;
       font-weight: 700;
       line-height: 1.5rem;

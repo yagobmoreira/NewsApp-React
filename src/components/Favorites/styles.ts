@@ -8,10 +8,11 @@ export const FavoriteSection = styled.section<FavoriteSectionProps>`
   align-items: center;
   display: flex;
   flex-flow: row wrap;
-  justify-content: ${({ favoritesLength }) => (favoritesLength >= 3
-    ? 'space-between' : 'space-evenly')};
-  margin: 0 auto;
-  min-height: 60vh;
+  justify-content: ${({ favoritesLength }) => (Number.isInteger(favoritesLength / 3)
+    ? 'space-between' : 'flex-start')};
+  column-gap: 2.4rem;
+  margin: 2rem auto;
+  min-height: ${({ favoritesLength }) => { if (favoritesLength === 0) return '10rem'; }};
   width: 100%;
   
   div {

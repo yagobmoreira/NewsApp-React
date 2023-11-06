@@ -58,7 +58,7 @@ function NewsCard({ item,
           style={ {
             color: '#2a2b2c',
             fontFamily: 'Gabarito',
-            fontSize: toggleOrientation ? '1.2rem' : '1.5rem',
+            fontSize: toggleOrientation ? '1.1rem' : '1.5rem',
             fontWeight: '700',
             minHeight: toggleOrientation ? '4.375rem' : '2rem',
             textAlign: 'left',
